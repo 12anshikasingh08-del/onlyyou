@@ -3,88 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Pookie 💛</title>
+<title>For Sirr Ji 💛</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
-  background: linear-gradient(to bottom, #fff5ec, #fde2e4);
   font-family: 'Patrick Hand', cursive;
+  background: linear-gradient(to bottom, #fff1e6, #fde2e4);
   color: #3b2f2f;
   overflow-x: hidden;
 }
 
-/* MAIN CONTAINER */
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 30px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 25px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+/* CENTER */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ENVELOPE */
+.envelope {
+  width: 220px;
+  height: 140px;
+  background: #c94f4f;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 70px solid #e57373;
+}
+
+.envelope span {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+/* SECTION CARD */
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  max-width: 800px;
+  margin: 30px auto;
   text-align: center;
 }
 
-/* HEADINGS */
-h1 {
-  font-size: 2.6rem;
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  margin-bottom: 25px;
-}
-
-/* MUSIC BUTTON */
-.play-btn {
+/* BUTTON */
+.btn {
   background: #c94f4f;
   color: white;
   border: none;
-  padding: 14px 28px;
+  padding: 12px 24px;
   font-size: 1.1rem;
-  border-radius: 30px;
+  border-radius: 25px;
   cursor: pointer;
   margin: 20px 0;
-  transition: transform 0.2s;
 }
 
-.play-btn:hover {
-  transform: scale(1.05);
+/* MESSAGE */
+.message {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 1.9;
 }
 
 /* IMAGE */
-.image-box {
-  margin: 30px 0;
-}
-
 .image-box img {
   width: 100%;
   max-width: 380px;
   border-radius: 22px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  margin: 30px 0;
 }
 
-/* LOVE TEXT */
-.love-text {
+/* POEM */
+.poem {
+  white-space: pre-line;
   font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
-  line-height: 1.9;
-  margin-top: 30px;
-  padding: 20px;
-}
-
-.love-text span {
-  color: #c94f4f;
-  font-weight: bold;
-}
-
-/* FOOTER */
-footer {
-  margin-top: 25px;
-  font-size: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
 /* HEARTS */
@@ -97,89 +119,125 @@ footer {
 }
 
 @keyframes floatUp {
-  from {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: translateY(-100vh) scale(1.6);
-    opacity: 0;
-  }
-}
-
-/* MOBILE */
-@media (max-width: 600px) {
-  h1 { font-size: 2.1rem; }
-  .love-text { font-size: 1rem; }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-100vh); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- ENVELOPE SCREEN -->
+<div class="center" id="envelopeScreen">
+  <div class="envelope" onclick="openEnvelope()">
+    <span>Tap to open 💌</span>
+  </div>
+</div>
 
-  <h1>Hey Pookie 💛</h1>
-  <div class="subtitle">For Mahim Singhai</div>
+<!-- CONTENT -->
+<div id="content" class="hidden">
 
-  <!-- MUSIC -->
-  <button class="play-btn" onclick="playSong()">🎵 Tap to play our song</button>
-  <audio id="song">
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
-
-  <!-- IMAGE -->
-  <div class="image-box">
-    <img src="image.jpg" alt="Us, drawn like love">
+  <div class="center">
+    <div class="card">
+      <h2>For Sirr ji 💛</h2>
+      <button class="btn" onclick="openMessage()">Tap here</button>
+    </div>
   </div>
 
-  <!-- LOVE TEXT -->
-  <div class="love-text">
-    I don’t remember the exact moment it changed,  
-    but somewhere between conversations and comfort,  
-    you stopped being just a person in my life  
-    and became a feeling I carry everywhere.  
-    <br><br>
+  <div class="center hidden" id="messageSection">
+    <div class="card message">
+      To the very special man who puts up with everything  
+      and still manages to make me laugh,  
+      thank you for being you.  
 
-    You are my <span>only one</span>.  
-    Not by chance, not by habit —  
-    but by choice, every single day.  
-    <br><br>
+      You are my constant support —  
+      thanks for loving me in my lows to highs.  
 
-    ✨ “To my only one.”  
-    <br>
-    ✨ “I love you to the stars and back.”  
-    <br>
-    ✨ “You feel like home in a world that never stays still.”
+      <strong>I love you, Sirr ji 🤍</strong>
+
+      <br><br>
+      <em>Scroll down ↓</em>
+    </div>
   </div>
 
-  <footer>
-    Made with love 🤍
-  </footer>
+  <div class="center">
+    <div class="card image-box">
+      <img src="https://pin.it/45qL9qaEA" alt="Us">
+      <p><em>This is us btw 🤍</em></p>
+    </div>
+  </div>
+
+  <div class="center">
+    <div class="card poem">
+      <h3>My love in verse</h3>
+
+Anjaan tha ek din  
+Ab apna lgne laga hai,  
+Vo khaas dost tha kal,  
+Aaj or khaas ho gaya hai.  
+
+Waqt aise saath me uske behne laga hai,  
+Ghante ghadi me the jo,  
+Vo bas kuch minute me behne laga hai,  
+
+Saath rahu uske,  
+Uske paas rahu main,  
+Kuch nai, bass dil ko itna lagne laga hai,  
+
+Vo ajaan tha kal,  
+Ab dil ke sabke kareeb rehne laga hai.  
+
+Ek ajnabi thaa vo,  
+Ab ghar sa lagne laga hai,  
+Ghar dhoond ti thi mai,  
+Ab ghar mere saath hi rhne laga hai,  
+
+Anjaan tha vo ek din,  
+Ab mujhse bhi kareeb mere rhne laga hai,  
+Jitna jaana nai khudko Maine,  
+Mujhko mujhse bhi zyada smjhne laga hai  
+
+Anjaan tha vo kal,  
+Ab vo Anjaan kahan raha hai,  
+Meri baaton, mere khawabo me rhne laga hai,  
+Anjaan tha vo,  
+Ab ghar sa lagne laga hai.
+    </div>
+  </div>
 
 </div>
 
+<!-- MUSIC -->
+<button class="btn" style="position:fixed; bottom:20px; right:20px;" onclick="playMusic()">🎵 Play music</button>
+<audio id="song" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function playSong() {
+function openEnvelope() {
+  document.getElementById("envelopeScreen").style.display = "none";
+  document.getElementById("content").classList.remove("hidden");
+}
+
+function openMessage() {
+  document.getElementById("messageSection").classList.remove("hidden");
+}
+
+function playMusic() {
   document.getElementById("song").play();
 }
 
-/* HEART GENERATOR */
+/* HEARTS */
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerHTML = "❤";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.fontSize = (14 + Math.random() * 14) + "px";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
   document.body.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 8000);
+  setTimeout(() => heart.remove(), 8000);
 }
-
-setInterval(createHeart, 500);
+setInterval(createHeart, 600);
 </script>
 
 </body>
